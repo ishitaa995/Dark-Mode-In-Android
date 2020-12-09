@@ -9,7 +9,7 @@ public class MyApplication extends Application {
 
     private static Context context;
     private static Application applicaion;
-    private static String NIGHT_MODE;
+    private static final String NIGHT_MODE = "night_mode";
     private int systemUIMode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
     private static MyApplication singleton = null;
 

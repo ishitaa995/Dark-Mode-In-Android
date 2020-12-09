@@ -8,10 +8,12 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import static com.example.darktheme.MyApplication.getContext;
+
 public class DarkThemeActivity extends AppCompatActivity {
 
     private RadioButton rbLightMode, rbDarkMode,rbSystemMode;
-    private static String NIGHT_MODE, LIGHT_MODE, SYSTEM_UI_MODE;
+    private static final String RB_NIGHT_MODE = "rb_ night_mode", LIGHT_MODE="light_mode", SYSTEM_UI_MODE="system_ui_mode";
     private RadioGroup rgTheme;
     
     @Override
@@ -43,15 +45,12 @@ public class DarkThemeActivity extends AppCompatActivity {
 
     private void setRbLastState() {
         rbLightMode.setChecked(PreferenceUtils.getPreferenceBoolValueWithDefaultValue(this, LIGHT_MODE, false));
-        rbDarkMode.setChecked(PreferenceUtils.getPreferenceBoolValueWithDefaultValue(this, NIGHT_MODE,false));
+        rbDarkMode.setChecked(PreferenceUtils.getPreferenceBoolValueWithDefaultValue(this, RB_NIGHT_MODE,false));
         rbSystemMode.setChecked(PreferenceUtils.getPreferenceBoolValueWithDefaultValue(this, SYSTEM_UI_MODE,true));
 
     }
 
     private void setListener() {
-//        rbDarkMode.setOnClickListener(this);
-//        rbLightMode.setOnClickListener(this);
-//        rbSystemMode.setOnClickListener(this);
         rgTheme.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
@@ -69,18 +68,18 @@ public class DarkThemeActivity extends AppCompatActivity {
         });
     }
 
-//    private void setApplicationTheme(){
-//        if(rbLightMode.isChecked()){
-//            setDarkModeBasedOnUserPreference(AppCompatDelegate.MODE_NIGHT_NO);
-//            setRadioButtonState(rbLightMode.isChecked(), rbDarkMode.isChecked(),rbSystemMode.isChecked());
-//        }else if(rbDarkMode.isChecked()){
-//            setRadioButtonState(rbLightMode.isChecked(), rbDarkMode.isChecked(),rbSystemMode.isChecked());
-//            setDarkModeBasedOnUserPreference(AppCompatDelegate.MODE_NIGHT_YES);
-//        }else{
-//            setRadioButtonState(rbLightMode.isChecked(), rbDarkMode.isChecked(),rbSystemMode.isChecked());
-//            setDarkModeBasedOnUserPreference(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-//        }
-//    }
+    private void setApplicationTheme(){
+        if(rbLightMode.isChecked()){
+            setDarkModeBasedOnUserPreference(AppCompatDelegate.MODE_NIGHT_NO);
+            setRadioButtonState(rbLightMode.isChecked(), rbDarkMode.isChecked(),rbSystemMode.isChecked());
+        }else if(rbDarkMode.isChecked()){
+            setRadioButtonState(rbLightMode.isChecked(), rbDarkMode.isChecked(),rbSystemMode.isChecked());
+            setDarkModeBasedOnUserPreference(AppCompatDelegate.MODE_NIGHT_YES);
+        }else{
+            setRadioButtonState(rbLightMode.isChecked(), rbDarkMode.isChecked(),rbSystemMode.isChecked());
+            setDarkModeBasedOnUserPreference(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        }
+    }
 
     private void setDarkModeBasedOnUserPreference(int themeMode){
         AppCompatDelegate.setDefaultNightMode(themeMode);
@@ -89,9 +88,8 @@ public class DarkThemeActivity extends AppCompatActivity {
 
     private void setRadioButtonState(boolean isLightMode, boolean isNightMode, boolean isSystemMode){
         PreferenceUtils.writePreferenceValue(this,LIGHT_MODE, isLightMode);
-        PreferenceUtils.writePreferenceValue(this,NIGHT_MODE, isNightMode);
+        PreferenceUtils.writePreferenceValue(this,RB_NIGHT_MODE, isNightMode);
         PreferenceUtils.writePreferenceValue(this,SYSTEM_UI_MODE, isSystemMode);
     }
-
 
 }

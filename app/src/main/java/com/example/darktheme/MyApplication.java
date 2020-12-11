@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatDelegate;
 public class MyApplication extends Application {
 
     private static Context context;
-    private static Application applicaion;
-    private static final String NIGHT_MODE = "night_mode";
-    private int systemUIMode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+    private static Application application;
+    private static final String ACTIVE_MODE = "active_mode";
+    private int currentlyActiveMode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
     private static MyApplication singleton = null;
 
 
@@ -20,32 +20,30 @@ public class MyApplication extends Application {
     }
 
     public static MyApplication getInstance() {
-
-        if(singleton == null)
-        {
+        if(singleton == null) {
             singleton = new MyApplication();
         }
         return singleton;
     }
 
     public static Application getApplicaion() {
-        return MyApplication.applicaion;
+        return MyApplication.application;
     }
 
     public void onCreate() {
         super.onCreate();
         MyApplication.context = getApplicationContext();
-        MyApplication.applicaion = getApplicaion();
+        MyApplication.application = getApplicaion();
         singleton = this;
-        this.systemUIMode = PreferenceUtils.getPreferenceIntValueForTheme(this,NIGHT_MODE);
+        this.currentlyActiveMode = PreferenceUtils.getPreferenceIntValueForTheme(this, ACTIVE_MODE);
     }
 
     public int getActiveMode() {
-        return systemUIMode;
+        return currentlyActiveMode;
     }
 
     public void setActiveMode(int mode) {
-        this.systemUIMode = mode;
-        PreferenceUtils.writePreferenceValue(this, NIGHT_MODE, systemUIMode);
+        this.currentlyActiveMode = mode;
+        PreferenceUtils.writePreferenceValue(this, ACTIVE_MODE, currentlyActiveMode);
     }
 }

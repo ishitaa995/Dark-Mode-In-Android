@@ -10,4 +10,6 @@
         <color name="white">#FFFFFFFF</color>
 
         <color name="text_color">#FFFF</color>
-    </resources>
+        <color name="icon_color">#9C27B0</color>
+
+</resources>

@@ -4,16 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
-import static com.example.darktheme.MyApplication.getContext;
 
 public class DarkThemeActivity extends AppCompatActivity {
 
     private RadioButton rbLightMode, rbDarkMode,rbSystemMode;
-    private static final String RB_NIGHT_MODE = "rb_ night_mode", LIGHT_MODE="light_mode", SYSTEM_UI_MODE="system_ui_mode";
+    private static final String DARK_MODE = "dark_mode", LIGHT_MODE="light_mode", SYSTEM_UI_MODE="system_ui_mode";
     private RadioGroup rgTheme;
     
     @Override
@@ -26,6 +23,7 @@ public class DarkThemeActivity extends AppCompatActivity {
         setListener();
     }
 
+    //Load previously selected theme from Preference Utils
     private void setUpApplicationTheme() {
         if (MyApplication.getInstance().getActiveMode()==AppCompatDelegate.MODE_NIGHT_YES){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -36,18 +34,19 @@ public class DarkThemeActivity extends AppCompatActivity {
         }
     }
 
+    //initialize view
     private void initViews() {
-        rbLightMode = findViewById(R.id.rb_light_mode);
-        rbDarkMode = findViewById(R.id.rb_dark_mode);
+        rbLightMode  = findViewById(R.id.rb_light_mode);
+        rbDarkMode   = findViewById(R.id.rb_dark_mode);
         rbSystemMode = findViewById(R.id.rb_system_mode);
-        rgTheme = findViewById(R.id.rg_dark_mode);
+        rgTheme      = findViewById(R.id.rg_dark_mode);
     }
 
+    //fetch last selected mode from PreferenceUtils
     private void setRbLastState() {
-        rbLightMode.setChecked(PreferenceUtils.getPreferenceBoolValueWithDefaultValue(this, LIGHT_MODE, false));
-        rbDarkMode.setChecked(PreferenceUtils.getPreferenceBoolValueWithDefaultValue(this, RB_NIGHT_MODE,false));
+        rbLightMode.setChecked(PreferenceUtils.getPreferenceBoolValueWithDefaultValue(this,  LIGHT_MODE, false));
+        rbDarkMode.setChecked(PreferenceUtils.getPreferenceBoolValueWithDefaultValue(this,   DARK_MODE,false));
         rbSystemMode.setChecked(PreferenceUtils.getPreferenceBoolValueWithDefaultValue(this, SYSTEM_UI_MODE,true));
-
     }
 
     private void setListener() {
@@ -58,38 +57,28 @@ public class DarkThemeActivity extends AppCompatActivity {
                     setDarkModeBasedOnUserPreference(AppCompatDelegate.MODE_NIGHT_NO);
                     setRadioButtonState(rbLightMode.isChecked(), rbDarkMode.isChecked(),rbSystemMode.isChecked());
                 }else if(rbDarkMode.getId() == checkedId){
-                    setRadioButtonState(rbLightMode.isChecked(), rbDarkMode.isChecked(),rbSystemMode.isChecked());
                     setDarkModeBasedOnUserPreference(AppCompatDelegate.MODE_NIGHT_YES);
-                }else{
                     setRadioButtonState(rbLightMode.isChecked(), rbDarkMode.isChecked(),rbSystemMode.isChecked());
+                }else{
                     setDarkModeBasedOnUserPreference(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                    setRadioButtonState(rbLightMode.isChecked(), rbDarkMode.isChecked(),rbSystemMode.isChecked());
                 }
             }
         });
     }
 
-    private void setApplicationTheme(){
-        if(rbLightMode.isChecked()){
-            setDarkModeBasedOnUserPreference(AppCompatDelegate.MODE_NIGHT_NO);
-            setRadioButtonState(rbLightMode.isChecked(), rbDarkMode.isChecked(),rbSystemMode.isChecked());
-        }else if(rbDarkMode.isChecked()){
-            setRadioButtonState(rbLightMode.isChecked(), rbDarkMode.isChecked(),rbSystemMode.isChecked());
-            setDarkModeBasedOnUserPreference(AppCompatDelegate.MODE_NIGHT_YES);
-        }else{
-            setRadioButtonState(rbLightMode.isChecked(), rbDarkMode.isChecked(),rbSystemMode.isChecked());
-            setDarkModeBasedOnUserPreference(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-        }
-    }
 
+//Save currently active mode
     private void setDarkModeBasedOnUserPreference(int themeMode){
         AppCompatDelegate.setDefaultNightMode(themeMode);
         MyApplication.getInstance().setActiveMode(themeMode);
     }
 
+    //Save selected mode in PreferenceUtils, in order to restore radio button state once the app is killed and launched
     private void setRadioButtonState(boolean isLightMode, boolean isNightMode, boolean isSystemMode){
-        PreferenceUtils.writePreferenceValue(this,LIGHT_MODE, isLightMode);
-        PreferenceUtils.writePreferenceValue(this,RB_NIGHT_MODE, isNightMode);
-        PreferenceUtils.writePreferenceValue(this,SYSTEM_UI_MODE, isSystemMode);
+        PreferenceUtils.writePreferenceValue(this, LIGHT_MODE, isLightMode);
+        PreferenceUtils.writePreferenceValue(this, DARK_MODE, isNightMode);
+        PreferenceUtils.writePreferenceValue(this, SYSTEM_UI_MODE, isSystemMode);
     }
 
 }

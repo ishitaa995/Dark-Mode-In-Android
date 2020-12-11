@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 public class DarkThemeActivity extends AppCompatActivity {
 
     private RadioButton rbLightMode, rbDarkMode,rbSystemMode;
+    private TextView tvSubTitle;
     private static final String DARK_MODE = "dark_mode", LIGHT_MODE="light_mode", SYSTEM_UI_MODE="system_ui_mode";
     private RadioGroup rgTheme;
     
@@ -40,6 +42,8 @@ public class DarkThemeActivity extends AppCompatActivity {
         rbDarkMode   = findViewById(R.id.rb_dark_mode);
         rbSystemMode = findViewById(R.id.rb_system_mode);
         rgTheme      = findViewById(R.id.rg_dark_mode);
+        //Visible only in Dark mode cause textcolor is white in Light Mode
+        tvSubTitle       = findViewById(R.id.textView);
     }
 
     //fetch last selected mode from PreferenceUtils

@@ -53,6 +53,7 @@ public class DarkThemeActivity extends AppCompatActivity {
         rbSystemMode.setChecked(PreferenceUtils.getPreferenceBoolValueWithDefaultValue(this, SYSTEM_UI_MODE,true));
     }
 
+    // set mode for application on selection of radio button
     private void setListener() {
         rgTheme.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -72,7 +73,7 @@ public class DarkThemeActivity extends AppCompatActivity {
     }
 
 
-//Save currently active mode
+    //Save currently active mode
     private void setDarkModeBasedOnUserPreference(int themeMode){
         AppCompatDelegate.setDefaultNightMode(themeMode);
         MyApplication.getInstance().setActiveMode(themeMode);

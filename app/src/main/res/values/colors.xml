@@ -8,9 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="text_color">#FF000000</color>
+    <color name="text_color_dayNight">#FF000000</color>
     <color name="icon_color">#FF000000</color>
     <color name="magic_text_color">#FFFF</color>
+    <color name="background_color_dayNight">#FFF</color>
 
 
 </resources>

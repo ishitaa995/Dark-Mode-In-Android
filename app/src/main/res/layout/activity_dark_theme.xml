@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color_dayNight"
     android:orientation="vertical">
 
     <RadioGroup
@@ -23,7 +24,7 @@
             android:checked="true"
             android:padding="5dp"
             android:text="@string/system_mode"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color_dayNight" />
 
         <RadioButton
             android:id="@+id/rb_light_mode"
@@ -31,7 +32,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="@string/light_mode"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color_dayNight" />
 
         <RadioButton
             android:id="@+id/rb_dark_mode"
@@ -39,7 +40,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="@string/dark_mode"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color_dayNight" />
     </RadioGroup>
 
     <ImageView
@@ -48,7 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:padding="20dp"
-        android:src="@drawable/ic_android"
+        android:background="@drawable/ic_android"
+        android:backgroundTint="@color/icon_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rg_dark_mode" />
@@ -57,7 +59,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The Night has Fallen"
+        android:text="@string/the_night_has_fallen"
         android:textColor="@color/magic_text_color"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"

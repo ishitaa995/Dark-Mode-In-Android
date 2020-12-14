@@ -49,7 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:padding="20dp"
-        android:src="@drawable/ic_android"
+        android:background="@drawable/ic_android"
+        android:backgroundTint="@color/icon_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rg_dark_mode" />
@@ -58,7 +59,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The Night has Fallen"
+        android:text="@string/the_night_has_fallen"
         android:textColor="@color/magic_text_color"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"

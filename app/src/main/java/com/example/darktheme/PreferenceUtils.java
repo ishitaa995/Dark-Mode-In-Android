@@ -40,16 +40,7 @@ public class PreferenceUtils {
         return sharedPreferences.getBoolean(prefsKey, defaultValue);
     }
 
-    //To clear SharedPreference
-    public static void clearAllTheSharedPreferencesValues(Context context) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPreferences.edit().clear().apply();
-    }
 
-    public static void clearSpValueByKey(Context context, String key) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        sp.edit().remove(key).apply();
-    }
 }
 
 

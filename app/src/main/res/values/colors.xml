@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="text_color">#FF000000</color>
+    <color name="icon_color">#FF000000</color>
+    <color name="magic_text_color">#FFFF</color>
+
+
 </resources>
